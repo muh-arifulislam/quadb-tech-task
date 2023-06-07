@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
 import SummaryLoader from "../../components/SummaryLoader";
+import ModalForm from "../../components/ModalForm";
 const Summary = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState({});
   const [overview, setOverview] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
@@ -103,7 +105,10 @@ const Summary = () => {
                   </p>
                 </div>
               </div>
-              <button class="bg-amber-400 font-bold py-2 px-5 rounded">
+              <button
+                onClick={() => setOpenModal(!openModal)}
+                class="bg-amber-400 font-bold py-2 px-5 rounded"
+              >
                 Book tickets
               </button>
             </div>
@@ -143,6 +148,12 @@ const Summary = () => {
           </div>
         </div>
       </div>
+      {/*form modal  */}
+      <ModalForm
+        data={data}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      ></ModalForm>
     </div>
   );
 };
