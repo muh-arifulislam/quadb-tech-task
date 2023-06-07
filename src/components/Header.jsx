@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ cartOpen, setCartOpen }) => {
   const [show, setShow] = useState(false);
   return (
-    <nav
-      class="flex items-center justify-between flex-wrap py-6 lg:px-[50px] md:px-[50px] px-[20px] bg-[rgba(3,37,65)]"
-    >
+    <nav class="flex items-center justify-between flex-wrap py-6 lg:px-[50px] md:px-[50px] px-[20px] bg-[rgba(3,37,65)]">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-3xl tracking-tight">QuadB Tech</span>
       </div>
       <div class="lg:hidden flex items-center gap-x-[20px]">
-        <button className="text-white">
+        <button onClick={()=>setCartOpen(!cartOpen)} className="text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -67,7 +65,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="lg:block hidden">
-          <button className="text-white">
+          <button onClick={()=>setCartOpen(!cartOpen)} className="text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

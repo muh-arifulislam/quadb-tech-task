@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { addToCart } from "../fakeDb";
 const ModalForm = ({ data, openModal, setOpenModal }) => {
   const { show } = data;
   const handleSubmit = (e) => {
     e.preventDefault();
+    addToCart(show.id);
   };
   return (
     <div
@@ -11,7 +13,7 @@ const ModalForm = ({ data, openModal, setOpenModal }) => {
       }`}
       style={{ backgroundColor: "rgba(149,165,160,0.8)" }}
     >
-      <div onOut className="w-full lg:max-w-xl max-w-xs">
+      <div className="w-full lg:max-w-xl md:max-w-lg max-w-xs">
         <div class="w-full max-w-xl ">
           <form
             onSubmit={(e) => handleSubmit(e)}

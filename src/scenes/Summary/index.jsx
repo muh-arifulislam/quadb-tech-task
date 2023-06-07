@@ -154,6 +154,7 @@ const Summary = () => {
         openModal={openModal}
         setOpenModal={setOpenModal}
       ></ModalForm>
+      
     </div>
   );
 };
