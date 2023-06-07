@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { deleteFromCart } from "../fakeDb";
 const Cart = ({ cartOpen, setCartOpen }) => {
   const [cart, setCart] = useState([]);
+  console.log(cartOpen);
   useEffect(() => {
     fetch("https://api.tvmaze.com/search/shows?q=all")
       .then((res) => res.json())
@@ -24,11 +25,10 @@ const Cart = ({ cartOpen, setCartOpen }) => {
   return (
     <div>
       <div
-        id="hs-overlay-right"
-        class={`translate-x-full fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-l dark:bg-gray-800 dark:border-gray-700 ${
-          cartOpen && "translate-x-0 transition-all duration-300"
+        class={`fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-l dark:bg-gray-800 dark:border-gray-700 ${
+          cartOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        tabindex="-1"
+        tabIndex="-1"
       >
         <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
           <h3 class="font-bold text-gray-800 dark:text-white">Booked Ticket</h3>
