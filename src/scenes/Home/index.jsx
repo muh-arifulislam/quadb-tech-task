@@ -10,7 +10,7 @@ const Home = () => {
   }, []);
   return (
     <section className="container mx-auto my-[50px]">
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-[30px] lg:mx-0 mx-[20px]">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-x-[30px] gap-y-[40px] lg:mx-0 mx-[20px]">
         {shows.map((data) => (
           <Card data={data} key={data.show.id}></Card>
         ))}

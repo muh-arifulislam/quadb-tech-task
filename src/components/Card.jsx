@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import dateFormat, { masks } from "dateformat";
 const Card = ({ data }) => {
-  const { score: percentage, show } = data;
+  const { score, show } = data;
   const { name, image } = show;
-  const score = (360 * Math.round(percentage * 100)) / 100;
-
+  const releaseDate = dateFormat(show.premiered, "mmmm dS, yyyy");
+  let scoreColor = "";
+  const percentage = Math.floor(data?.score * 100);
+  if (percentage >= 70) {
+    scoreColor = "#007500";
+  } else {
+    scoreColor = "#D1D100";
+  }
   return (
     <div className="">
       <div className="relative mb-[30px] rounded-[10px]">
@@ -13,7 +19,7 @@ const Card = ({ data }) => {
         <div
           className="absolute bottom-0 rounded-full"
           style={{
-            backgroundColor: "black",
+            backgroundColor: "#474040",
             padding: "3px",
             transform: "translateX(15px) translateY(50%)",
           }}
@@ -21,11 +27,13 @@ const Card = ({ data }) => {
           <div
             className="circular-progress"
             style={{
-              background: `conic-gradient(green ${score}deg, #bbbb 0deg)`,
+              background: `conic-gradient(${scoreColor} ${
+                (360 * percentage) / 100
+              }deg, #bbbb 0deg)`,
             }}
           >
             <div className="percentage-value">
-              <span className="fs-4">0</span>
+              <span className="fs-4">{percentage}</span>
               <span className="" style={{ fontSize: "8px" }}>
                 %
               </span>
@@ -35,11 +43,11 @@ const Card = ({ data }) => {
       </div>
       <div>
         <h2 className="text-[1.1em] font-semibold">{name}</h2>
-        <div className="flex justify-between items-end mt-[10px]">
-          <h4 className="text-slate-600 text-[1em]">May 31, 2023</h4>
+        <div className="flex justify-between items-end gap-x-[10px]">
+          <h4 className="text-slate-600 text-[1em] leading-[1.2rem]">{releaseDate}</h4>
           <Link
             to={`/movie/${show.id}`}
-            className="px-[10px] py-[5px] bg-purple-600 rounded-md"
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           >
             Summary
           </Link>
