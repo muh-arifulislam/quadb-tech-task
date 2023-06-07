@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { deleteFromCart } from "../fakeDb";
 const Cart = ({ cartOpen, setCartOpen }) => {
   const [cart, setCart] = useState([]);
-  console.log(cartOpen);
   useEffect(() => {
     fetch("https://api.tvmaze.com/search/shows?q=all")
       .then((res) => res.json())
@@ -25,21 +24,21 @@ const Cart = ({ cartOpen, setCartOpen }) => {
   return (
     <div>
       <div
-        class={`fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-l dark:bg-gray-800 dark:border-gray-700 ${
+        className={`fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-l dark:bg-gray-800 dark:border-gray-700 ${
           cartOpen ? "translate-x-0" : "translate-x-full"
         }`}
         tabIndex="-1"
       >
-        <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
-          <h3 class="font-bold text-gray-800 dark:text-white">Booked Ticket</h3>
+        <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
+          <h3 className="font-bold text-gray-800 dark:text-white">Booked Ticket</h3>
           <button
             onClick={() => setCartOpen(false)}
             type="button"
-            class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+            className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
           >
-            <span class="sr-only">Close modal</span>
+            <span className="sr-only">Close modal</span>
             <svg
-              class="w-3.5 h-3.5"
+              className="w-3.5 h-3.5"
               width="8"
               height="8"
               viewBox="0 0 8 8"
@@ -53,7 +52,7 @@ const Cart = ({ cartOpen, setCartOpen }) => {
             </svg>
           </button>
         </div>
-        <div class="p-4">
+        <div className="p-4">
           {cart.map((item, idx) => (
             <div
               key={idx}

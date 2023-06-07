@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Header = ({ cartOpen, setCartOpen }) => {
   const [show, setShow] = useState(false);
   return (
-    <nav class="flex items-center justify-between flex-wrap py-6 lg:px-[50px] md:px-[50px] px-[20px] bg-[rgba(3,37,65)]">
-      <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-3xl tracking-tight">QuadB Tech</span>
+    <nav className="flex items-center justify-between flex-wrap py-6 lg:px-[50px] md:px-[50px] px-[20px] bg-[rgba(3,37,65)]">
+      <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <span className="font-semibold text-3xl tracking-tight">QuadB Tech</span>
       </div>
-      <div class="lg:hidden flex items-center gap-x-[20px]">
+      <div className="lg:hidden flex items-center gap-x-[20px]">
         <button onClick={()=>setCartOpen(!cartOpen)} className="text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,10 +27,10 @@ const Header = ({ cartOpen, setCartOpen }) => {
         </button>
         <button
           onClick={() => setShow(!show)}
-          class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+          className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
         >
           <svg
-            class="fill-current h-3 w-3"
+            className="fill-current h-3 w-3"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -40,26 +40,26 @@ const Header = ({ cartOpen, setCartOpen }) => {
         </button>
       </div>
       <div
-        class={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
+        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
           !show && "hidden"
         }`}
       >
-        <div class="text-xl lg:flex-grow">
+        <div className="text-xl lg:flex-grow">
           <Link
             to="/movie"
-            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
           >
             Movies
           </Link>
           <Link
             to="/movie"
-            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
           >
             Examples
           </Link>
           <Link
             to="/movie"
-            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-400 mr-4"
           >
             About
           </Link>

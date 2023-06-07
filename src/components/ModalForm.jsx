@@ -14,20 +14,20 @@ const ModalForm = ({ data, openModal, setOpenModal }) => {
       style={{ backgroundColor: "rgba(149,165,160,0.8)" }}
     >
       <div className="w-full lg:max-w-xl md:max-w-lg max-w-xs">
-        <div class="w-full max-w-xl ">
+        <div className="w-full max-w-xl ">
           <form
             onSubmit={(e) => handleSubmit(e)}
-            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           >
-            <div class="mb-4">
+            <div className="mb-4">
               <label
-                class="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="username"
               >
                 Name
               </label>
               <input
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
                 value={show?.name}
@@ -35,29 +35,29 @@ const ModalForm = ({ data, openModal, setOpenModal }) => {
               />
             </div>
             <div className="mb-4 grid grid-cols-2 gap-[20px]">
-              <div class="">
+              <div className="">
                 <label
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  for="username"
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="username"
                 >
                   Date
                 </label>
                 <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="username"
                   type="date"
                   placeholder="Username"
                 />
               </div>
-              <div class="">
+              <div className="">
                 <label
-                  class="block text-gray-700 text-sm font-bold mb-2"
-                  for="username"
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="username"
                 >
                   ID
                 </label>
                 <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="username"
                   type="text"
                   value={show.id}
@@ -65,17 +65,17 @@ const ModalForm = ({ data, openModal, setOpenModal }) => {
                 />
               </div>
             </div>
-            <div class="flex items-center justify-end gap-[15px]">
+            <div className="flex items-center justify-end gap-[15px]">
               <button
                 onClick={() => setOpenModal(!openModal)}
-                class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                className="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
                 type="button"
               >
                 cancel
               </button>
               <input
                 onClick={() => setOpenModal(!openModal)}
-                class="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline cursor-pointer"
+                className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline cursor-pointer"
                 type="submit"
                 value="confirm"
               ></input>

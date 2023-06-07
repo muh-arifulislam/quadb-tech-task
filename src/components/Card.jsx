@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
 const Card = ({ data }) => {
@@ -14,8 +14,11 @@ const Card = ({ data }) => {
   }
   return (
     <div className="">
+      {/* image section  */}
       <div className="relative mb-[30px] rounded-[10px]">
-        <img className="w-full rounded-[10px]" src={image.medium} alt="" />
+        <Link to={`/movie/${show.id}`}>
+          <img className="w-full rounded-[10px]" src={image.medium} alt="" />
+        </Link>
         <div
           className="absolute bottom-0 rounded-full"
           style={{
@@ -41,8 +44,11 @@ const Card = ({ data }) => {
           </div>
         </div>
       </div>
+      {/* descr section  */}
       <div>
-        <h2 className="text-[1.1em] font-semibold">{name}</h2>
+        <Link to={`/movie/${show.id}`}>
+          <h2 className="text-[1.1em] font-semibold">{name}</h2>
+        </Link>
         <div className="flex justify-between items-end gap-x-[10px]">
           <h4 className="text-slate-600 text-[1em] leading-[1.2rem]">
             {releaseDate}

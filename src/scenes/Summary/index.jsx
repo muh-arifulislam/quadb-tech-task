@@ -10,6 +10,7 @@ const Summary = () => {
   const [data, setData] = useState({});
   const [overview, setOverview] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
+  const [releaseYear, setReleaseYear] = useState("");
   useEffect(() => {
     setLoading(true);
     fetch("https://api.tvmaze.com/search/shows?q=all")
@@ -19,7 +20,10 @@ const Summary = () => {
           const queryData = data.find((item) => item.show.id == id);
           setData(queryData);
           setOverview(queryData.show.summary);
-          setReleaseDate(dateFormat(data?.show?.premiered, "mmmm dS, yyyy"));
+          setReleaseDate(
+            dateFormat(queryData?.show?.premiered, "mmmm dS, yyyy")
+          );
+          setReleaseYear(dateFormat(queryData?.show?.premiered, "yyyy"));
           setLoading(false);
         }, [1000]);
       });
@@ -31,6 +35,7 @@ const Summary = () => {
   }
   return (
     <div className="bg-slate-100 ">
+      {/* main area  */}
       <div className="relative py-[60px] lg:px-[50px] px-[20px] ">
         <div className="flex lg:flex-row md:flex-row flex-col items-center gap-[40px]">
           {/* summary image*/}
@@ -43,9 +48,12 @@ const Summary = () => {
           </div>
           {/* summary description  */}
           <div className="w-full">
+            {/* title  */}
             <h2 className="text-3xl font-bold">
-              {data?.show?.name} <span className=" font-normal">(2023)</span>
+              {data?.show?.name}{" "}
+              <span className=" font-normal">({releaseYear})</span>
             </h2>
+            {/* date and genre  */}
             <div className="flex">
               <h5>{releaseDate}</h5>
               <ul className="relative flex disc-bullet">
@@ -58,6 +66,7 @@ const Summary = () => {
               </ul>
               <h5 className="relative disc-bullet">{data?.show?.runtime}m</h5>
             </div>
+            {/* score and ratings           */}
             <div className="flex lg:flex-row md:flex-row flex-col lg:items-center gap-[20px] mt-[20px]">
               <div className="flex">
                 <div
@@ -83,13 +92,13 @@ const Summary = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-[45px] h-[45px]"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
                     />
                   </svg>
@@ -107,15 +116,17 @@ const Summary = () => {
               </div>
               <button
                 onClick={() => setOpenModal(!openModal)}
-                class="bg-amber-400 font-bold py-2 px-5 rounded"
+                className="bg-amber-400 font-bold py-2 px-5 rounded"
               >
                 Book tickets
               </button>
             </div>
+            {/* overview  */}
             <div className="mt-[20px]">
               <h4 className="text-xl font-bold mb-[10px]">Overview</h4>
               <div dangerouslySetInnerHTML={{ __html: overview }}></div>
             </div>
+            {/* extra details  */}
             <div className="grid lg:grid-cols-4 grid-cols-2 mt-[20px]">
               <div>
                 <h2 className="font-bold">Status</h2>
@@ -154,7 +165,6 @@ const Summary = () => {
         openModal={openModal}
         setOpenModal={setOpenModal}
       ></ModalForm>
-      
     </div>
   );
 };
