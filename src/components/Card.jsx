@@ -44,10 +44,12 @@ const Card = ({ data }) => {
       <div>
         <h2 className="text-[1.1em] font-semibold">{name}</h2>
         <div className="flex justify-between items-end gap-x-[10px]">
-          <h4 className="text-slate-600 text-[1em] leading-[1.2rem]">{releaseDate}</h4>
+          <h4 className="text-slate-600 text-[1em] leading-[1.2rem]">
+            {releaseDate}
+          </h4>
           <Link
             to={`/movie/${show.id}`}
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="bg-transparent text-[rgba(3,37,65)] font-semibold  py-2 px-4 border-2 border-[rgba(3,37,65)] hover:bg-[rgba(3,37,65)] hover:text-white rounded transition-all ease-in"
           >
             Summary
           </Link>

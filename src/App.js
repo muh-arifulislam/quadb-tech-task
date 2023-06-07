@@ -3,9 +3,11 @@ import "./App.css";
 import Home from "./scenes/Home";
 import Summary from "./scenes/Summary";
 import { useState } from "react";
+import Header from "./components/Header";
 function App() {
   return (
     <div className="App">
+      <Header></Header>
       <Routes>
         <Route path="/" element={<Navigate to="/movie"></Navigate>}></Route>
         <Route path="/movie" element={<Home></Home>}></Route>

@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import dateFormat, { masks } from "dateformat";
+import SummaryLoader from "../../components/SummaryLoader";
 const Summary = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [overview, setOverview] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
   useEffect(() => {
+    setLoading(true);
     fetch("https://api.tvmaze.com/search/shows?q=all")
       .then((res) => res.json())
       .then((data) => {
-        const queryData = data.find((item) => item.show.id == id);
-        setData(queryData);
-        setOverview(queryData.show.summary);
+        setTimeout(() => {
+          const queryData = data.find((item) => item.show.id == id);
+          setData(queryData);
+          setOverview(queryData.show.summary);
+          setReleaseDate(dateFormat(data?.show?.premiered, "mmmm dS, yyyy"));
+          setLoading(false);
+        }, [1000]);
       });
   }, []);
   let percentage = 0;
   percentage = Math.floor(data?.score * 100);
+  if (loading) {
+    return <SummaryLoader></SummaryLoader>;
+  }
   return (
-    <div className="bg-slate-100 lg:h-[100vh] lg:flex lg:items-center">
-      <div className="relative py-[50px] lg:px-[50px] px-[20px] ">
+    <div className="bg-slate-100 ">
+      <div className="relative py-[60px] lg:px-[50px] px-[20px] ">
         <div className="flex lg:flex-row md:flex-row flex-col items-center gap-[40px]">
+          {/* summary image*/}
           <div className="lg:max-w-[25vw] md:max-w-[30vw] max-w-[100vw]">
             <img
               className="rounded-[10px]"
@@ -26,12 +39,13 @@ const Summary = () => {
               alt=""
             />
           </div>
+          {/* summary description  */}
           <div className="w-full">
             <h2 className="text-3xl font-bold">
               {data?.show?.name} <span className=" font-normal">(2023)</span>
             </h2>
             <div className="flex">
-              <h5>{data?.show?.premiered}</h5>
+              <h5>{releaseDate}</h5>
               <ul className="relative flex disc-bullet">
                 {data?.show?.genres.map((genre, indx) => (
                   <li className="" key={indx}>
@@ -78,12 +92,14 @@ const Summary = () => {
                     />
                   </svg>
                   <p>
-                    <span><span className="text-lg font-bold">
-                      {data?.show?.rating?.average
-                        ? data?.show?.rating?.average
-                        : "N/A"}
+                    <span>
+                      <span className="text-lg font-bold">
+                        {data?.show?.rating?.average
+                          ? data?.show?.rating?.average
+                          : "N/A"}
+                      </span>
+                      /10
                     </span>
-                    /10</span>
                   </p>
                 </div>
               </div>
